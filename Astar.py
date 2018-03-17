@@ -99,5 +99,4 @@ for i in range(0, int(testcases)):
             maze[j][k] = int(line[k])
     start_node = node(0,0,None, 0, width+height-2)
     make_child_node(start_node, start_node, height, width, maze)
-    current_node = start_node
 f.close()
