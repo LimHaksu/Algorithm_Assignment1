@@ -21,13 +21,13 @@ class node:
 # 2차원 배열 생성 방법
 # L = [[0 for cols in range(m)]for rows in range(n)]
 
-def make_child_node(current_node, parrent_node, height, width, maze, tag):
+def make_child_node(current_node, parrent_node, height, width, maze):
     print(current_node.y,current_node.x)
     #print explored node
     if(current_node.y == height-1 and current_node.x == width-1):
         print_tree(current_node)
         return 0
-    # the left node of current node
+    # the left node of the current node
     x = current_node.x - 1
     y = current_node.y
     if not(x == parrent_node.x and y == parrent_node.y):
@@ -37,7 +37,7 @@ def make_child_node(current_node, parrent_node, height, width, maze, tag):
             heapq.heappush(hq, node(x,y,current_node, current_node.g, h))
             #make_child_node(current_node.to[i], current_node, h, w, maze)
 
-    # the right node of current node
+    # the upper node of the current node
     x = current_node.x
     y = current_node.y + 1
     if not(x == parrent_node.x and y == parrent_node.y):
@@ -46,6 +46,8 @@ def make_child_node(current_node, parrent_node, height, width, maze, tag):
             current_node.to.append(node(x,y,current_node, current_node.g, h))
             heapq.heappush(hq, node(x,y,current_node, current_node.g, h))
             #make_child_node(current_node.to[i], current_node, h, w, maze)
+
+    # the right node of the current node
     x = current_node.x + 1
     y = current_node.y
     if not(x == parrent_node.x and y == parrent_node.y):
@@ -54,6 +56,8 @@ def make_child_node(current_node, parrent_node, height, width, maze, tag):
             current_node.to.append(node(x,y,current_node, current_node.g, h))
             heapq.heappush(hq, node(x,y,current_node, current_node.g, h))
             #make_child_node(current_node.to[i], current_node, h, w, maze)
+
+    # the lower node of the current node
     x = current_node.x
     y = current_node.y - 1
     if not(x == parrent_node.x and y == parrent_node.y):
@@ -63,9 +67,8 @@ def make_child_node(current_node, parrent_node, height, width, maze, tag):
             heapq.heappush(hq, node(x,y,current_node, current_node.g, h))
             #make_child_node(current_node.to[i], current_node, h, w, maze)
     if hq:
-        tag = 1
         q = heapq.heappop(hq)
-        make_child_node(q, q.from_node, height, width, maze, tag)
+        make_child_node(q, q.from_node, height, width, maze)
 
 def print_tree(leaf_node):
     node = leaf_node
@@ -95,11 +98,6 @@ for i in range(0, int(testcases)):
         for k in range(0, width):
             maze[j][k] = int(line[k])
     start_node = node(0,0,None, 0, width+height-2)
-    tag = 0
-    make_child_node(start_node, start_node, height, width, maze, tag)
+    make_child_node(start_node, start_node, height, width, maze)
     current_node = start_node
-
-#    while(current_node != None):
-#        print('(',current_node.y,',',current_node.x,',',current_node.g,',',current_node.h,')\n')
-#        current_node = current_node.to[0]
 f.close()
