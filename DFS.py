@@ -1,5 +1,5 @@
 import heapq
-import pdb
+from gui import *
 class node:
     def __init__(self, x, y, from_node, g, h):
         self.from_node = from_node
@@ -24,6 +24,7 @@ class node:
 
 def make_child_node(current_node, parrent_node):
     print(current_node.y,current_node.x)
+    explored_node.append(current_node)
     #pdb.set_trace()
     #print explored node
     if(current_node.y == height-1 and current_node.x == width-1):
@@ -92,11 +93,16 @@ def print_tree(leaf_node):
     while not(node.x == 0 and node.y == 0):
         stack.append(node)
         node = node.from_node
-    print("("+str(node.y)+", "+str(node.x)+")",end='')
+    stack.append(node)
+    count = 0
+    show_path = stack
+    showMaze(maze, explored_node, show_path, height, width)
     while stack:
         node = stack.pop()
         print("("+str(node.y)+", "+str(node.x)+")",end='')
+        count += 1
     print('\n')
+    print(count)
 
 f = open("input.txt")
 testcases = f.readline()
@@ -109,6 +115,7 @@ for i in range(0, int(testcases)):
     #hq = []
     # make maze from the input file
     goal_state = [False]
+    explored_node = []
     check = [[0 for col in range(width)] for row in range(height)]
     maze = [[0 for col in range(width)] for row in range(height)]
     for j in range(0, height):
