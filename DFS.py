@@ -1,5 +1,4 @@
 import heapq
-import pdb
 class node:
     def __init__(self, x, y, from_node, g, h):
         self.from_node = from_node
@@ -92,7 +91,7 @@ def print_tree(leaf_node):
     while not(node.x == 0 and node.y == 0):
         stack.append(node)
         node = node.from_node
-    print("("+str(node.y)+", "+str(node.x)+")",end='')
+    stack.append(node)
     while stack:
         node = stack.pop()
         print("("+str(node.y)+", "+str(node.x)+")",end='')

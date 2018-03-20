@@ -81,7 +81,8 @@ def print_tree(leaf_node):
     while not(node.x == 0 and node.y == 0):
         stack.append(node)
         node = node.from_node
-    print("("+str(node.y)+", "+str(node.x)+")",end='')
+    stack.append(node)
+    show_path = stack
     while stack:
         node = stack.pop()
         print("("+str(node.y)+", "+str(node.x)+")",end='')
