@@ -1,5 +1,6 @@
 import heapq
 from gui import *
+from time import sleep
 class node:
     def __init__(self, x, y, from_node, g, h):
         self.from_node = from_node
@@ -25,6 +26,8 @@ class node:
 def make_child_node(current_node, parrent_node, height, width, maze):
     print(current_node.y,current_node.x)
     explored_node.append(current_node)
+    showMaze(maze, explored_node, height, width)
+    sleep(0.05)
     #print explored node
     if(current_node.y == height-1 and current_node.x == width-1):
         print_tree(current_node)
@@ -85,7 +88,7 @@ def print_tree(leaf_node):
         node = node.from_node
     stack.append(node)
     show_path = stack
-    #showMaze(maze, explored_node, show_path, height, width)
+    showMaze_final(maze, explored_node, show_path, height, width)
     count = 0
     while stack:
         node = stack.pop()
