@@ -28,12 +28,12 @@ def showMaze_final(original, explored,path, rows, cols):
     for node in path:
         pygame.draw.rect(DISPLAYSURF, BLUE, (node.x*(BOXSIZE+GAPSIZE), node.y*(BOXSIZE+GAPSIZE), BOXSIZE, BOXSIZE))
 
-    while True:
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
-            pygame.display.update()
+#    while True:
+#        for event in pygame.event.get():
+#            if event.type == QUIT:
+#                pygame.quit()
+#                sys.exit()
+    pygame.display.update()
 
 def showMaze(original, explored, rows, cols):
     pygame.init()

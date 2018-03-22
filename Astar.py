@@ -27,7 +27,7 @@ def make_child_node(current_node, parrent_node, height, width, maze):
     print(current_node.y,current_node.x)
     explored_node.append(current_node)
     showMaze(maze, explored_node, height, width)
-    sleep(0.05)
+    sleep(0.002)
     #print explored node
     if(current_node.y == height-1 and current_node.x == width-1):
         print_tree(current_node)
@@ -87,15 +87,22 @@ def print_tree(leaf_node):
         stack.append(node)
         node = node.from_node
     stack.append(node)
-    show_path = stack
-    showMaze_final(maze, explored_node, show_path, height, width)
+    show_path = []
     count = 0
     while stack:
         node = stack.pop()
+        show_path.append(node)
+        showMaze_final(maze, explored_node, show_path, height, width)
         print("("+str(node.y)+", "+str(node.x)+")",end='')
+        sleep(0.001)
         count += 1
     print('\n')
     print(count)
+    while True:
+           for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
 
 f = open("input.txt")
 testcases = f.readline()
