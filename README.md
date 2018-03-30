@@ -1,5 +1,7 @@
 # Algorithm_Assignment1
 
+We will find optimal solutions for given mazes using A*, Breadth First Search(BFS) and Uniform Cost Search(UCS) algorithms and find normal solutions using Depth First Search(DFS), Greedy algorithms.  
+The start point of the maze is (0,0) and the end point is bottom right of the maze.  
 
 input.txt example, there are no comments in actual input file
 -------------------------------------------------------------  
@@ -8,7 +10,7 @@ input.txt example, there are no comments in actual input file
 6 6 // height, width of the maze.  
 0,0,0,0,0,1 // 0 is a path, 1 is a wall.  
 1,1,0,0,0,1 // coordinates notation is (y,x).  
-0,0,0,1,0,0 // maze starts from (0,0) and ends to (height, width).  
+0,0,0,1,0,0 // maze starts from (0,0) and ends to (height-1, width-1).  
 0,1,1,0,0,1  
 0,1,0,0,1,0  
 0,1,0,0,0,0  
